@@ -1,0 +1,62 @@
+---
+const services = [
+  {
+    title: "Cocina equipada y lavandería",
+    description: "Cocina completa con lavadora, frigorífico, microondas y cafetera. Como en casa desde el primer día."
+  },
+  {
+    title: "Patio y terraza",
+    description: "Zona exterior con mesas y sombrillas para desayunar al fresco o cenar en las noches de verano."
+  },
+  {
+    title: "Aire acondicionado",
+    description: "Climatización en las estancias principales, imprescindible en el verano sevillano."
+  },
+  {
+    title: "Escapada rural a una hora de Sevilla",
+    description: "Senderos de la Sierra Morena, la Vía de la Plata y el Cerro de los Covachos a un paso."
+  }
+];
+---
+
+<section id="servicios" class="seccion servicios">
+  <div class="contenedor">
+    <p class="antetitulo">Todo lo que necesitas</p>
+    <h2 class="titulo-seccion">Servicios y equipamiento</h2>
+    <div class="servicios__lista">
+      {services.map((service) => (
+        <div class="servicios__item">
+          <h3>{service.title}</h3>
+          <p>{service.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .servicios {
+    background: var(--primario);
+    color: var(--claro);
+  }
+
+  .servicios .antetitulo {
+    color: var(--acento);
+  }
+
+  .servicios__lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2.2rem;
+  }
+
+  .servicios__item h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--acento);
+  }
+
+  .servicios__item p {
+    opacity: 0.92;
+  }
+</style>

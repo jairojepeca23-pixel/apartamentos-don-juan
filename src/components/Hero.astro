@@ -1,0 +1,61 @@
+---
+---
+
+<section id="inicio" class="hero">
+  <div class="contenedor hero__interior">
+    <p class="antetitulo">Almadén de la Plata · Sevilla</p>
+    <h1 class="hero__titulo">Tu casa en Almadén de la Plata</h1>
+    <p class="hero__texto">
+      Dos apartamentos turísticos recién reformados en el centro del pueblo, a menos de 65 km de Sevilla. Ambiente rural, grandes paisajes y todas las comodidades.
+    </p>
+    <div class="hero__acciones">
+      <a class="boton boton--acento" href="https://wa.me/34677256036">
+        Reservar por WhatsApp
+      </a>
+      <a class="boton boton--fantasma" href="#apartamentos">
+        Ver apartamentos
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background: var(--primario);
+    background-image: repeating-linear-gradient(
+      100deg,
+      transparent 0 22px,
+      rgb(255 255 255 / 0.02) 22px 23px
+    );
+    color: var(--claro);
+    min-height: 88vh;
+    display: grid;
+    align-items: center;
+    padding-block: 8rem 5rem;
+  }
+
+  .hero__interior {
+    max-width: var(--ancho-max);
+    margin-inline: auto;
+    padding-inline: 1.5rem;
+  }
+
+  .hero__titulo {
+    font-size: clamp(2.4rem, 6.5vw, 4.4rem);
+    max-width: 16ch;
+    margin-bottom: 1.4rem;
+  }
+
+  .hero__texto {
+    max-width: 52ch;
+    font-size: 1.15rem;
+    opacity: 0.92;
+    margin-bottom: 2.2rem;
+  }
+
+  .hero__acciones {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+</style>

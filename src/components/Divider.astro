@@ -1,0 +1,41 @@
+---
+interface Props {
+  variant?: "dark" | "light";
+}
+
+const { variant = "dark" } = Astro.props;
+---
+
+<div class={`cenefa cenefa--${variant}`} aria-hidden="true">
+  <svg width="100%" height="34" preserveAspectRatio="none" role="presentation">
+    <defs>
+      <pattern id={`estrella-${variant}`} width="34" height="34" patternUnits="userSpaceOnUse">
+        <path
+          d="M17 4 L20.5 13.5 L30 17 L20.5 20.5 L17 30 L13.5 20.5 L4 17 L13.5 13.5 Z"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.4"
+        ></path>
+        <circle cx="17" cy="17" r="1.6" fill="currentColor"></circle>
+      </pattern>
+    </defs>
+    <rect width="100%" height="34" fill={`url(#estrella-${variant})`}></rect>
+  </svg>
+</div>
+
+<style>
+  .cenefa {
+    line-height: 0;
+    padding-block: 0.6rem;
+  }
+
+  .cenefa--dark {
+    background: var(--primario);
+    color: var(--acento);
+  }
+
+  .cenefa--light {
+    background: var(--claro);
+    color: var(--neutro);
+  }
+</style>

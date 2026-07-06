@@ -1,0 +1,39 @@
+---
+---
+
+<section id="sobre" class="seccion">
+  <div class="contenedor sobre">
+    <div>
+      <p class="antetitulo">El pueblo</p>
+      <h2 class="titulo-seccion">En el corazón del pueblo, junto a la Torre del Reloj</h2>
+    </div>
+    <div class="sobre__texto">
+      <p>
+        Los apartamentos están en pleno Paseo del Reloj, el centro de Almadén de la Plata, rodeados de naranjos y a un paso de bares y comercios. Recién reformados, combinan la tranquilidad del pueblo con un interior moderno y completamente equipado.
+      </p>
+      <p>
+        Almadén de la Plata es puerta de la Sierra Morena sevillana y etapa de la Vía de la Plata: senderos, dehesa y uno de los cielos más limpios de la provincia, a menos de una hora de Sevilla.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .sobre {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .sobre__texto p + p {
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 760px) {
+    .sobre {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+</style>

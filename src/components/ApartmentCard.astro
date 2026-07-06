@@ -1,0 +1,85 @@
+---
+interface Props {
+  number: number;
+  name: string;
+  description: string;
+  capacity: number;
+  gradient: string;
+}
+
+const { number, name, description, capacity, gradient } = Astro.props;
+---
+
+<article class="tarjeta">
+  <div class={`tarjeta__marcador tarjeta__marcador--${number}`} aria-hidden="true">
+    <span>{name}</span>
+  </div>
+  <div class="tarjeta__cuerpo">
+    <h3>{name}</h3>
+    <p>{description}</p>
+    <div class="tarjeta__pie">
+      <span class="tarjeta__precio">Consultar disponibilidad</span>
+      {capacity > 0 && (
+        <span class="tarjeta__capacidad">Hasta {capacity} personas</span>
+      )}
+    </div>
+  </div>
+</article>
+
+<style define:vars={{ gradient }}>
+  .tarjeta {
+    background: #fff;
+    border-radius: var(--radio);
+    overflow: hidden;
+    box-shadow: 0 1px 4px #1c221914;
+  }
+
+  .tarjeta__marcador {
+    aspect-ratio: 4 / 3;
+    display: grid;
+    place-items: center;
+    color: var(--claro);
+    font-family: var(--fuente-display);
+    font-size: 1.3rem;
+  }
+
+  .tarjeta__marcador--1 {
+    background: linear-gradient(140deg, var(--primario), var(--neutro));
+  }
+
+  .tarjeta__marcador--2 {
+    background: linear-gradient(140deg, var(--neutro), var(--acento));
+  }
+
+  .tarjeta__marcador--3 {
+    background: linear-gradient(140deg, var(--primario-oscuro), var(--primario));
+  }
+
+  .tarjeta__cuerpo {
+    padding: 1.3rem 1.4rem 1.5rem;
+  }
+
+  .tarjeta__cuerpo h3 {
+    font-size: 1.35rem;
+    margin-bottom: 0.4rem;
+  }
+
+  .tarjeta__pie {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-top: 1rem;
+    border-top: 1px solid rgb(28 34 25 / 0.1);
+    padding-top: 0.8rem;
+  }
+
+  .tarjeta__precio {
+    font-weight: 700;
+    color: var(--primario);
+  }
+
+  .tarjeta__capacidad {
+    font-size: 0.9rem;
+    color: #1c2219a6;
+  }
+</style>

@@ -1,0 +1,165 @@
+---
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — Apartamentos de Don Juan</title>
+    <meta name="description" content={description} />
+
+    <!-- OG Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet" />
+
+    <!-- Schema.org -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LodgingBusiness",
+      "name": "Apartamentos de Don Juan",
+      "description": "Apartamentos turísticos recién reformados en el centro de Almadén de la Plata, a menos de 65 km de Sevilla.",
+      "telephone": "+34 677 25 60 36",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Paseo del Reloj, 15A, 41240 Almadén de la Plata (Sevilla)",
+        "addressLocality": "Almadén de la Plata",
+        "addressRegion": "Sevilla",
+        "postalCode": "41240",
+        "addressCountry": "ES"
+      }
+    })} />
+
+    <style is:global>
+      :root {
+        --primario: #232a3a;
+        --primario-oscuro: #181d29;
+        --claro: #f5f1e6;
+        --acento: #ab8a3e;
+        --neutro: #9a917c;
+        --tinta: #23211c;
+        --fuente-display: "Fraunces", Georgia, serif;
+        --fuente-texto: "Karla", system-ui, sans-serif;
+        --ancho-max: 1100px;
+        --radio: 6px;
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: var(--fuente-texto);
+        color: var(--tinta);
+        background: var(--claro);
+        line-height: 1.6;
+        font-size: 1.0625rem;
+      }
+
+      h1, h2, h3 {
+        font-family: var(--fuente-display);
+        font-weight: 500;
+        line-height: 1.15;
+        letter-spacing: -0.01em;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .contenedor {
+        max-width: var(--ancho-max);
+        margin-inline: auto;
+        padding-inline: 1.5rem;
+      }
+
+      .seccion {
+        padding-block: 5rem;
+      }
+
+      .antetitulo {
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        color: var(--acento);
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+
+      .titulo-seccion {
+        font-size: clamp(1.8rem, 4vw, 2.6rem);
+        margin-bottom: 1.5rem;
+      }
+
+      .boton {
+        display: inline-block;
+        padding: 0.85rem 1.9rem;
+        border-radius: var(--radio);
+        text-decoration: none;
+        font-weight: 700;
+        font-size: 0.95rem;
+        transition: transform 0.15s ease, box-shadow 0.15s ease;
+      }
+
+      .boton:hover {
+        transform: translateY(-2px);
+      }
+
+      .boton:focus-visible {
+        outline: 3px solid var(--acento);
+        outline-offset: 2px;
+      }
+
+      .boton--acento {
+        background: var(--acento);
+        color: var(--claro);
+      }
+
+      .boton--fantasma {
+        border: 1.5px solid currentColor;
+        color: var(--claro);
+      }
+
+      .boton--primario {
+        background: var(--primario);
+        color: var(--claro);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .boton,
+        .boton:hover {
+          transition: none;
+          transform: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>

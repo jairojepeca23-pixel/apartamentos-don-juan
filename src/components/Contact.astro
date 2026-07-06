@@ -1,0 +1,84 @@
+---
+---
+
+<section id="contacto" class="seccion contacto">
+  <div class="contenedor contacto__interior">
+    <div>
+      <p class="antetitulo">Reservas y consultas</p>
+      <h2 class="titulo-seccion">Contacto</h2>
+      <p class="contacto__direccion">
+        Paseo del Reloj, 15A, 41240 Almadén de la Plata (Sevilla)
+      </p>
+      <dl class="contacto__horarios">
+        <div>
+          <dt>Atención y reservas</dt>
+          <dd>Teléfono o WhatsApp: 677 25 60 36</dd>
+        </div>
+        <div>
+          <dt>Entrada / salida</dt>
+          <dd>A convenir con el huésped</dd>
+        </div>
+      </dl>
+    </div>
+    <div class="contacto__acciones">
+      <a class="boton boton--acento" href="https://wa.me/34677256036">
+        WhatsApp
+      </a>
+      <a class="boton boton--primario" href="tel:+34677256036">
+        Llamar: +34 677 25 60 36
+      </a>
+      <a class="contacto__email" href="https://instagram.com/apartamentos_dedonjuan">
+        Escríbenos por Instagram
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contacto {
+    background: #fff;
+  }
+
+  .contacto__interior {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contacto__direccion {
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+  }
+
+  .contacto__horarios {
+    display: grid;
+    gap: 0.8rem;
+  }
+
+  .contacto__horarios dt {
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--primario);
+  }
+
+  .contacto__acciones {
+    display: grid;
+    gap: 0.9rem;
+    justify-items: start;
+  }
+
+  .contacto__email {
+    font-weight: 500;
+    color: var(--primario);
+  }
+
+  @media (max-width: 760px) {
+    .contacto__interior {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>
