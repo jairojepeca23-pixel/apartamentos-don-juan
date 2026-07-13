@@ -1,0 +1,6 @@
+# Redirecciones de dominio — apartamentosdonjuan.es es el dominio principal
+https://apartamentosdonjuan.com/* https://apartamentosdonjuan.es/:splat 301!
+https://www.apartamentosdonjuan.com/* https://apartamentosdonjuan.es/:splat 301!
+http://apartamentosdonjuan.com/* https://apartamentosdonjuan.es/:splat 301!
+http://www.apartamentosdonjuan.com/* https://apartamentosdonjuan.es/:splat 301!
+https://www.apartamentosdonjuan.es/* https://apartamentosdonjuan.es/:splat 301!

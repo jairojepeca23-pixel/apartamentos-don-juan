@@ -1,3 +1,11 @@
+---
+title: README — Código web Apartamentos Don Juan (Astro)
+type: resource
+status: active
+tags: [readme, codigo, apartamentos-don-juan]
+project: "[[Project: Astro - Apartamentos Don Juan]]"
+---
+
 # Astro Starter Kit: Minimal
 
 ```sh
