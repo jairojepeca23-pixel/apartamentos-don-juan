@@ -1,37 +1,63 @@
 ---
 interface Props {
+  slug: string;
   number: number;
   name: string;
-  description: string;
+  shortDescription: string;
   capacity: number;
-  gradient: string;
+  highlights: string[];
 }
 
-const { number, name, description, capacity, gradient } = Astro.props;
+const { slug, number, name, shortDescription, capacity, highlights } = Astro.props;
 ---
 
-<article class="tarjeta">
+<a class="tarjeta" href={`/apartamentos/${slug}/`}>
   <div class={`tarjeta__marcador tarjeta__marcador--${number}`} aria-hidden="true">
     <span>{name}</span>
   </div>
   <div class="tarjeta__cuerpo">
     <h3>{name}</h3>
-    <p>{description}</p>
+    <p class="tarjeta__resumen">{shortDescription}</p>
+    <ul class="tarjeta__chips" aria-label="Comodidades destacadas">
+      {highlights.slice(0, 4).map((item) => (
+        <li>{item}</li>
+      ))}
+    </ul>
     <div class="tarjeta__pie">
-      <span class="tarjeta__precio">Consultar disponibilidad</span>
+      <span class="tarjeta__ver">Ver apartamento →</span>
       {capacity > 0 && (
         <span class="tarjeta__capacidad">Hasta {capacity} personas</span>
       )}
     </div>
   </div>
-</article>
+</a>
 
-<style define:vars={{ gradient }}>
+<style>
   .tarjeta {
     background: #fff;
     border-radius: var(--radio);
     overflow: hidden;
     box-shadow: 0 1px 4px #1c221914;
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+
+  .tarjeta:hover,
+  .tarjeta:focus-visible {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px #1c221929;
+  }
+
+  .tarjeta:focus-visible {
+    outline: 3px solid var(--acento);
+    outline-offset: 2px;
+  }
+
+  .tarjeta:hover .tarjeta__ver {
+    color: var(--acento);
   }
 
   .tarjeta__marcador {
@@ -57,11 +83,38 @@ const { number, name, description, capacity, gradient } = Astro.props;
 
   .tarjeta__cuerpo {
     padding: 1.3rem 1.4rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
   }
 
   .tarjeta__cuerpo h3 {
     font-size: 1.35rem;
     margin-bottom: 0.4rem;
+  }
+
+  .tarjeta__resumen {
+    margin-bottom: 1rem;
+  }
+
+  .tarjeta__chips {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: auto;
+  }
+
+  .tarjeta__chips li {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--primario);
+    background: var(--claro);
+    border: 1px solid #23211c1f;
+    border-radius: 999px;
+    padding: 0.22rem 0.7rem;
+    white-space: nowrap;
   }
 
   .tarjeta__pie {
@@ -73,9 +126,10 @@ const { number, name, description, capacity, gradient } = Astro.props;
     padding-top: 0.8rem;
   }
 
-  .tarjeta__precio {
+  .tarjeta__ver {
     font-weight: 700;
     color: var(--primario);
+    transition: color 0.15s ease;
   }
 
   .tarjeta__capacidad {

@@ -1,0 +1,269 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Header from "../../components/Header.astro";
+import Divider from "../../components/Divider.astro";
+import Contact from "../../components/Contact.astro";
+import Footer from "../../components/Footer.astro";
+import { apartamentos, CONTACTO } from "../../data/apartamentos";
+
+export function getStaticPaths() {
+  return apartamentos.map((apt) => ({
+    params: { slug: apt.slug },
+    props: { apt },
+  }));
+}
+
+const { apt } = Astro.props;
+
+const title = `${apt.name} — Apartamentos de Don Juan, Almadén de la Plata`;
+const description = `${apt.shortDescription} Hasta ${apt.capacity} personas, ${apt.bedrooms} dormitorio(s) y ${apt.bathrooms} baño(s) en el centro de Almadén de la Plata (Sevilla).`;
+
+const whatsappReserva = `${CONTACTO.whatsapp}?text=${encodeURIComponent(
+  `Hola, me gustaría consultar disponibilidad del ${apt.name} de Apartamentos de Don Juan.`
+)}`;
+
+const datosRapidos = `Hasta ${apt.capacity} personas · ${apt.bedrooms} ${
+  apt.bedrooms === 1 ? "dormitorio" : "dormitorios"
+} · ${apt.bathrooms} ${apt.bathrooms === 1 ? "baño" : "baños"}`;
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Accommodation",
+  name: `${apt.name} — Apartamentos de Don Juan`,
+  description: apt.shortDescription,
+  occupancy: {
+    "@type": "QuantitativeValue",
+    maxValue: apt.capacity,
+    unitText: "personas",
+  },
+  numberOfBedrooms: apt.bedrooms,
+  numberOfBathroomsTotal: apt.bathrooms,
+  amenityFeature: apt.amenities.map((a) => ({
+    "@type": "LocationFeatureSpecification",
+    name: a,
+    value: true,
+  })),
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Paseo del Reloj, 15A",
+    addressLocality: "Almadén de la Plata",
+    addressRegion: "Sevilla",
+    postalCode: "41240",
+    addressCountry: "ES",
+  },
+};
+---
+
+<Layout title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+  <Header />
+
+  <section class={`portada portada--${apt.number}`}>
+    <div class="contenedor portada__interior">
+      <nav class="migas" aria-label="Ruta de navegación">
+        <a href="/">Inicio</a>
+        <span aria-hidden="true">/</span>
+        <a href="/#apartamentos">Apartamentos</a>
+        <span aria-hidden="true">/</span>
+        <span>{apt.name}</span>
+      </nav>
+      <h1>{apt.name}</h1>
+      <p class="portada__datos">{datosRapidos}</p>
+    </div>
+  </section>
+
+  <Divider variant="dark" />
+
+  <section class="seccion">
+    <div class="contenedor detalle">
+      <div class="detalle__texto">
+        <p class="antetitulo">El apartamento</p>
+        <h2 class="titulo-seccion">Tu estancia, al detalle</h2>
+        {apt.longDescription.map((parrafo) => <p class="detalle__parrafo">{parrafo}</p>)}
+
+        <div class="detalle__acciones">
+          <a class="boton boton--acento" href={whatsappReserva}>
+            Consultar disponibilidad por WhatsApp
+          </a>
+          <a class="boton boton--primario" href={`tel:${CONTACTO.telefonoIntl}`}>
+            Llamar: {CONTACTO.telefono}
+          </a>
+        </div>
+      </div>
+
+      <aside class="detalle__equipamiento">
+        <h3>Comodidades y equipamiento</h3>
+        <ul>
+          {apt.amenities.map((item) => (
+            <li>{item}</li>
+          ))}
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <section class="seccion otros">
+    <div class="contenedor">
+      <p class="antetitulo">Otras opciones</p>
+      <h2 class="titulo-seccion">También te puede encajar</h2>
+      <div class="otros__lista">
+        {apartamentos
+          .filter((otro) => otro.slug !== apt.slug)
+          .map((otro) => (
+            <a class="otros__item" href={`/apartamentos/${otro.slug}/`}>
+              <strong>{otro.name}</strong>
+              <span>Hasta {otro.capacity} personas · Ver ficha →</span>
+            </a>
+          ))}
+      </div>
+    </div>
+  </section>
+
+  <Divider variant="light" />
+
+  <Contact />
+
+  <Footer />
+</Layout>
+
+<style>
+  .portada {
+    color: var(--claro);
+    padding-block: 8.5rem 4rem;
+  }
+
+  .portada--1 {
+    background: linear-gradient(140deg, var(--primario), var(--neutro));
+  }
+
+  .portada--2 {
+    background: linear-gradient(140deg, var(--neutro), var(--acento));
+  }
+
+  .portada--3 {
+    background: linear-gradient(140deg, var(--primario-oscuro), var(--primario));
+  }
+
+  .migas {
+    font-size: 0.85rem;
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.6rem;
+    opacity: 0.85;
+  }
+
+  .migas a {
+    text-decoration: none;
+  }
+
+  .migas a:hover {
+    text-decoration: underline;
+  }
+
+  .portada h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    margin-bottom: 0.8rem;
+  }
+
+  .portada__datos {
+    font-size: 1.1rem;
+    opacity: 0.92;
+  }
+
+  .detalle {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .detalle__parrafo {
+    margin-bottom: 1rem;
+    max-width: 58ch;
+  }
+
+  .detalle__acciones {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1.8rem;
+  }
+
+  .detalle__equipamiento {
+    background: #fff;
+    border-radius: var(--radio);
+    box-shadow: 0 1px 4px #1c221914;
+    padding: 1.6rem 1.7rem;
+  }
+
+  .detalle__equipamiento h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .detalle__equipamiento ul {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .detalle__equipamiento li {
+    padding-left: 1.5rem;
+    position: relative;
+    font-size: 0.97rem;
+  }
+
+  .detalle__equipamiento li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--acento);
+    font-weight: 700;
+  }
+
+  .otros {
+    padding-top: 0;
+  }
+
+  .otros__lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.2rem;
+  }
+
+  .otros__item {
+    background: #fff;
+    border-radius: var(--radio);
+    box-shadow: 0 1px 4px #1c221914;
+    padding: 1.1rem 1.3rem;
+    text-decoration: none;
+    display: grid;
+    gap: 0.25rem;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .otros__item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 18px #1c221926;
+  }
+
+  .otros__item strong {
+    font-family: var(--fuente-display);
+    font-size: 1.1rem;
+    color: var(--primario);
+  }
+
+  .otros__item span {
+    font-size: 0.88rem;
+    color: #1c2219a6;
+  }
+
+  @media (max-width: 820px) {
+    .detalle {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+  }
+</style>

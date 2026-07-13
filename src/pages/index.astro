@@ -8,24 +8,10 @@ import Services from "../components/Services.astro";
 import About from "../components/About.astro";
 import Contact from "../components/Contact.astro";
 import Footer from "../components/Footer.astro";
-
-const apartments = [
-  {
-    number: 1,
-    name: "Apartamento 1",
-    description: "Recién reformado, con cocina completa, salón luminoso y acceso al patio. Perfecto para una escapada en familia.",
-    capacity: 4
-  },
-  {
-    number: 2,
-    name: "Apartamento 2",
-    description: "Acogedor y con todo lo necesario: cocina equipada, aire acondicionado y el Paseo del Reloj a la puerta.",
-    capacity: 2
-  }
-];
+import { apartamentos } from "../data/apartamentos";
 
 const title = "Apartamentos de Don Juan — Alojamiento en Almadén de la Plata (Sevilla)";
-const description = "Apartamentos turísticos recién reformados en el centro de Almadén de la Plata, a menos de 65 km de Sevilla. Cocina equipada, aire acondicionado y patio. Reservas: 677 25 60 36.";
+const description = "Tres apartamentos turísticos recién reformados en el centro de Almadén de la Plata, a menos de 65 km de Sevilla. Cocina equipada, aire acondicionado y patio. Reservas: 677 25 60 36.";
 ---
 
 <Layout title={title} description={description}>
@@ -39,13 +25,14 @@ const description = "Apartamentos turísticos recién reformados en el centro de
       <p class="antetitulo">Alojamiento en el centro del pueblo</p>
       <h2 class="titulo-seccion">Nuestros apartamentos</h2>
       <div class="tarjetas">
-        {apartments.map((apt) => (
+        {apartamentos.map((apt) => (
           <ApartmentCard
+            slug={apt.slug}
             number={apt.number}
             name={apt.name}
-            description={apt.description}
+            shortDescription={apt.shortDescription}
             capacity={apt.capacity}
-            gradient=""
+            highlights={apt.highlights}
           />
         ))}
       </div>
