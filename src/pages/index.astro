@@ -1,11 +1,74 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import ApartmentCard from "../components/ApartmentCard.astro";
+import Divider from "../components/Divider.astro";
+import Services from "../components/Services.astro";
+import About from "../components/About.astro";
+import Contact from "../components/Contact.astro";
+import Footer from "../components/Footer.astro";
+
+const apartments = [
+  {
+    number: 1,
+    name: "Apartamento 1",
+    description: "Recién reformado, con cocina completa, salón luminoso y acceso al patio. Perfecto para una escapada en familia.",
+    capacity: 4
+  },
+  {
+    number: 2,
+    name: "Apartamento 2",
+    description: "Acogedor y con todo lo necesario: cocina equipada, aire acondicionado y el Paseo del Reloj a la puerta.",
+    capacity: 2
+  }
+];
+
+const title = "Apartamentos de Don Juan — Alojamiento en Almadén de la Plata (Sevilla)";
+const description = "Apartamentos turísticos recién reformados en el centro de Almadén de la Plata, a menos de 65 km de Sevilla. Cocina equipada, aire acondicionado y patio. Reservas: 677 25 60 36.";
 ---
 
-<Layout title="Apartamentos de Don Juan — Próximamente">
-  <div style="display: flex; justify-content: center; align-items: center; min-height: 100vh; flex-direction: column; gap: 2rem; text-align: center; padding: 2rem;">
-    <h1 style="font-size: 3rem; color: #232a3a;">Próximamente</h1>
-    <p style="font-size: 1.2rem; color: #666;">El sitio web está en construcción.</p>
-    <p style="font-size: 1rem; color: #999;">Ponte en contacto para más información.</p>
-  </div>
+<Layout title={title} description={description}>
+  <Header />
+  <Hero />
+
+  <Divider variant="dark" />
+
+  <section id="apartamentos" class="seccion">
+    <div class="contenedor">
+      <p class="antetitulo">Alojamiento en el centro del pueblo</p>
+      <h2 class="titulo-seccion">Nuestros apartamentos</h2>
+      <div class="tarjetas">
+        {apartments.map((apt) => (
+          <ApartmentCard
+            number={apt.number}
+            name={apt.name}
+            description={apt.description}
+            capacity={apt.capacity}
+            gradient=""
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Services />
+
+  <Divider variant="light" />
+
+  <About />
+
+  <Divider variant="light" />
+
+  <Contact />
+
+  <Footer />
 </Layout>
+
+<style>
+  .tarjetas {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.6rem;
+  }
+</style>
