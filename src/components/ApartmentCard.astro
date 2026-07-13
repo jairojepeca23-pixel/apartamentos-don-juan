@@ -6,15 +6,20 @@ interface Props {
   shortDescription: string;
   capacity: number;
   highlights: string[];
+  images?: string[];
 }
 
-const { slug, number, name, shortDescription, capacity, highlights } = Astro.props;
+const { slug, number, name, shortDescription, capacity, highlights, images = [] } = Astro.props;
 ---
 
 <a class="tarjeta" href={`/apartamentos/${slug}/`}>
-  <div class={`tarjeta__marcador tarjeta__marcador--${number}`} aria-hidden="true">
-    <span>{name}</span>
-  </div>
+  {images.length > 0 ? (
+    <img class="tarjeta__foto" src={images[0]} alt={`Foto de ${name}`} loading="lazy" width="600" height="450" />
+  ) : (
+    <div class={`tarjeta__marcador tarjeta__marcador--${number}`} aria-hidden="true">
+      <span>{name}</span>
+    </div>
+  )}
   <div class="tarjeta__cuerpo">
     <h3>{name}</h3>
     <p class="tarjeta__resumen">{shortDescription}</p>
@@ -67,6 +72,12 @@ const { slug, number, name, shortDescription, capacity, highlights } = Astro.pro
     color: var(--claro);
     font-family: var(--fuente-display);
     font-size: 1.3rem;
+  }
+
+  .tarjeta__foto {
+    aspect-ratio: 4 / 3;
+    width: 100%;
+    object-fit: cover;
   }
 
   .tarjeta__marcador--1 {

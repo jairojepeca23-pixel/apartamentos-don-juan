@@ -1,0 +1,4 @@
+Copiar aquí las fotos de los apartamentos.
+Luego listar sus rutas en src/data/apartamentos.ts (campo images).
+Ejemplo: /img/apartamentos/apto1-salon.jpg
+Recomendado: JPG, max 1600px de ancho, nombres sin espacios ni tildes.

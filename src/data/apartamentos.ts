@@ -20,6 +20,13 @@ export interface Apartamento {
   highlights: string[];
   /** Lista completa de comodidades de la página individual */
   amenities: string[];
+  /**
+   * FOTOS: copiar los archivos a public/img/apartamentos/ y listar aquí
+   * las rutas, p. ej. ["/img/apartamentos/apto1-salon.jpg", "/img/apartamentos/apto1-dormitorio.jpg"]
+   * La primera foto es la portada de la card. Si la lista está vacía,
+   * se muestra el degradado provisional.
+   */
+  images: string[];
 }
 
 export const apartamentos: Apartamento[] = [
@@ -49,6 +56,7 @@ export const apartamentos: Apartamento[] = [
       "Ropa de cama y toallas incluidas",
       "Acceso al patio con mesas y sombrillas",
     ],
+    images: [],
   },
   {
     slug: "apartamento-2",
@@ -76,6 +84,7 @@ export const apartamentos: Apartamento[] = [
       "Ropa de cama y toallas incluidas",
       "Planta baja a pie de calle",
     ],
+    images: [],
   },
   {
     slug: "apartamento-3",
@@ -104,6 +113,7 @@ export const apartamentos: Apartamento[] = [
       "Salón-comedor amplio",
       "Dos baños completos",
     ],
+    images: [],
   },
 ];
 

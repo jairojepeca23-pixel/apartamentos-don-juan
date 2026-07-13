@@ -103,6 +103,20 @@ const schema = {
     </div>
   </section>
 
+  {apt.images.length > 0 && (
+    <section class="seccion galeria">
+      <div class="contenedor">
+        <p class="antetitulo">Galería</p>
+        <h2 class="titulo-seccion">Así es el apartamento</h2>
+        <div class="galeria__grid">
+          {apt.images.map((src, i) => (
+            <img src={src} alt={`${apt.name} — foto ${i + 1}`} loading="lazy" width="800" height="600" />
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
   <section class="seccion otros">
     <div class="contenedor">
       <p class="antetitulo">Otras opciones</p>
@@ -221,6 +235,24 @@ const schema = {
     left: 0;
     color: var(--acento);
     font-weight: 700;
+  }
+
+  .galeria {
+    padding-top: 0;
+  }
+
+  .galeria__grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+  }
+
+  .galeria__grid img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    border-radius: var(--radio);
+    box-shadow: 0 1px 4px #1c221914;
   }
 
   .otros {
