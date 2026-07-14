@@ -4,7 +4,8 @@ import Header from "../../components/Header.astro";
 import Divider from "../../components/Divider.astro";
 import Contact from "../../components/Contact.astro";
 import Footer from "../../components/Footer.astro";
-import { apartamentos, CONTACTO } from "../../data/apartamentos";
+import { apartamentos } from "../../data/apartamentos";
+import { SITE } from "../../data/site";
 
 export function getStaticPaths() {
   return apartamentos.map((apt) => ({
@@ -15,11 +16,11 @@ export function getStaticPaths() {
 
 const { apt } = Astro.props;
 
-const title = `${apt.name} en Almadén de la Plata`;
-const description = `${apt.shortDescription} Hasta ${apt.capacity} personas, ${apt.bedrooms} dormitorio(s) y ${apt.bathrooms} baño(s) en el centro de Almadén de la Plata (Sevilla).`;
+const title = `${apt.name} en ${SITE.schema.localidad}`;
+const description = `${apt.shortDescription} Hasta ${apt.capacity} personas, ${apt.bedrooms} dormitorio(s) y ${apt.bathrooms} baño(s) en el centro de ${SITE.schema.localidad} (${SITE.schema.provincia}).`;
 
-const whatsappReserva = `${CONTACTO.whatsapp}?text=${encodeURIComponent(
-  `Hola, me gustaría consultar disponibilidad del ${apt.name} de Apartamentos de Don Juan.`
+const whatsappReserva = `${SITE.contacto.whatsapp}?text=${encodeURIComponent(
+  `Hola, me gustaría consultar disponibilidad del ${apt.name} de ${SITE.marca.nombre}.`
 )}`;
 
 const datosRapidos = `Hasta ${apt.capacity} personas · ${apt.bedrooms} ${
@@ -29,7 +30,7 @@ const datosRapidos = `Hasta ${apt.capacity} personas · ${apt.bedrooms} ${
 const schema = {
   "@context": "https://schema.org",
   "@type": "Accommodation",
-  name: `${apt.name} — Apartamentos de Don Juan`,
+  name: `${apt.name} — ${SITE.marca.nombre}`,
   description: apt.shortDescription,
   occupancy: {
     "@type": "QuantitativeValue",
@@ -45,11 +46,11 @@ const schema = {
   })),
   address: {
     "@type": "PostalAddress",
-    streetAddress: "Paseo del Reloj, 15A",
-    addressLocality: "Almadén de la Plata",
-    addressRegion: "Sevilla",
-    postalCode: "41240",
-    addressCountry: "ES",
+    streetAddress: SITE.schema.calle,
+    addressLocality: SITE.schema.localidad,
+    addressRegion: SITE.schema.provincia,
+    postalCode: SITE.schema.cp,
+    addressCountry: SITE.schema.pais,
   },
 };
 ---
@@ -86,8 +87,8 @@ const schema = {
           <a class="boton boton--acento" href={whatsappReserva}>
             Consultar disponibilidad por WhatsApp
           </a>
-          <a class="boton boton--primario" href={`tel:${CONTACTO.telefonoIntl}`}>
-            Llamar: {CONTACTO.telefono}
+          <a class="boton boton--primario" href={`tel:${SITE.contacto.telefonoIntl}`}>
+            Llamar: {SITE.contacto.telefono}
           </a>
         </div>
       </div>

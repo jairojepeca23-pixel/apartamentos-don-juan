@@ -1,9 +1,10 @@
 ---
+import { SITE } from "../data/site";
 ---
 
 <header class="cabecera">
   <div class="contenedor cabecera__interior">
-    <a class="cabecera__marca" href="/">Apartamentos de Don Juan</a>
+    <a class="cabecera__marca" href="/">{SITE.marca.nombre}</a>
     <nav aria-label="Navegación principal">
       <ul class="cabecera__menu">
         <li><a href="/#apartamentos">Apartamentos</a></li>
@@ -11,8 +12,8 @@
         <li><a href="/#sobre">El pueblo</a></li>
         <li><a href="/#contacto">Contacto</a></li>
         <li>
-          <a class="cabecera__tel" href="tel:+34677256036">
-            +34 677 25 60 36
+          <a class="cabecera__tel" href={`tel:${SITE.contacto.telefonoIntl}`}>
+            {SITE.contacto.telefonoDisplay}
           </a>
         </li>
       </ul>

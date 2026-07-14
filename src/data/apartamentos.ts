@@ -117,10 +117,4 @@ export const apartamentos: Apartamento[] = [
   },
 ];
 
-export const CONTACTO = {
-  telefono: "677 25 60 36",
-  telefonoIntl: "+34677256036",
-  whatsapp: "https://wa.me/34677256036",
-  instagram: "https://instagram.com/apartamentos_dedonjuan",
-  direccion: "Paseo del Reloj, 15A, 41240 Almadén de la Plata (Sevilla)",
-};
+// Los datos de contacto e identidad del negocio viven en src/data/site.ts

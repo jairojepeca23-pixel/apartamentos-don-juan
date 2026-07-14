@@ -1,4 +1,6 @@
 ---
+import { SITE } from "../data/site";
+
 interface Props {
   title: string;
   description: string;
@@ -12,7 +14,7 @@ const { title, description } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{title} — Apartamentos de Don Juan</title>
+    <title>{title} — {SITE.marca.nombre}</title>
     <meta name="description" content={description} />
 
     <!-- OG Tags -->
@@ -28,17 +30,17 @@ const { title, description } = Astro.props;
     <!-- Schema.org -->
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "LodgingBusiness",
-      "name": "Apartamentos de Don Juan",
-      "description": "Apartamentos turísticos recién reformados en el centro de Almadén de la Plata, a menos de 65 km de Sevilla.",
-      "telephone": "+34 677 25 60 36",
+      "@type": SITE.schema.tipo,
+      "name": SITE.marca.nombre,
+      "description": SITE.schema.descripcion,
+      "telephone": SITE.contacto.telefonoDisplay,
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Paseo del Reloj, 15A, 41240 Almadén de la Plata (Sevilla)",
-        "addressLocality": "Almadén de la Plata",
-        "addressRegion": "Sevilla",
-        "postalCode": "41240",
-        "addressCountry": "ES"
+        "streetAddress": SITE.schema.calle,
+        "addressLocality": SITE.schema.localidad,
+        "addressRegion": SITE.schema.provincia,
+        "postalCode": SITE.schema.cp,
+        "addressCountry": SITE.schema.pais
       }
     })} />
 

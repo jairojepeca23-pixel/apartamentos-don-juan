@@ -1,19 +1,20 @@
 ---
+import { SITE } from "../data/site";
 ---
 
 <section id="inicio" class="hero">
   <div class="contenedor hero__interior">
-    <p class="antetitulo">Almadén de la Plata · Sevilla</p>
-    <h1 class="hero__titulo">Tu casa en Almadén de la Plata</h1>
+    <p class="antetitulo">{SITE.hero.antetitulo}</p>
+    <h1 class="hero__titulo">{SITE.hero.titulo}</h1>
     <p class="hero__texto">
-      Tres apartamentos turísticos recién reformados en el centro del pueblo, a menos de 65 km de Sevilla. Ambiente rural, grandes paisajes y todas las comodidades.
+      {SITE.hero.texto}
     </p>
     <div class="hero__acciones">
-      <a class="boton boton--acento" href="https://wa.me/34677256036">
-        Reservar por WhatsApp
+      <a class="boton boton--acento" href={SITE.contacto.whatsapp}>
+        {SITE.hero.ctaPrimario}
       </a>
       <a class="boton boton--fantasma" href="#apartamentos">
-        Ver apartamentos
+        {SITE.hero.ctaSecundario}
       </a>
     </div>
   </div>

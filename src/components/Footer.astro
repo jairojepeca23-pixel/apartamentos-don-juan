@@ -1,13 +1,14 @@
 ---
+import { SITE } from "../data/site";
 ---
 
 <footer class="pie">
   <div class="contenedor pie__interior">
-    <span class="pie__marca">Apartamentos de Don Juan</span>
+    <span class="pie__marca">{SITE.marca.nombre}</span>
     <div class="pie__enlaces">
-      <a href="https://instagram.com/apartamentos_dedonjuan">Instagram</a>
+      <a href={SITE.contacto.instagram}>Instagram</a>
     </div>
-    <small>© 2026 Apartamentos de Don Juan</small>
+    <small>© {SITE.marca.anio} {SITE.marca.nombre}</small>
   </div>
 </footer>
 
