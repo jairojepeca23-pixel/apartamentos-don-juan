@@ -15,7 +15,7 @@ export function getStaticPaths() {
 
 const { apt } = Astro.props;
 
-const title = `${apt.name} — Apartamentos de Don Juan, Almadén de la Plata`;
+const title = `${apt.name} en Almadén de la Plata`;
 const description = `${apt.shortDescription} Hasta ${apt.capacity} personas, ${apt.bedrooms} dormitorio(s) y ${apt.bathrooms} baño(s) en el centro de Almadén de la Plata (Sevilla).`;
 
 const whatsappReserva = `${CONTACTO.whatsapp}?text=${encodeURIComponent(
